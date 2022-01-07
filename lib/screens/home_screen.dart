@@ -1,4 +1,3 @@
-
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -22,11 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   FlTitlesData get titlesData => FlTitlesData(
-        leftTitles: SideTitles(showTitles: false),
-        topTitles: SideTitles(showTitles: false),
-        rightTitles: SideTitles(showTitles: false),
-        bottomTitles: SideTitles(showTitles: false)
-      );
+      leftTitles: SideTitles(showTitles: false),
+      topTitles: SideTitles(showTitles: false),
+      rightTitles: SideTitles(showTitles: false),
+      bottomTitles: SideTitles(showTitles: false));
 
   FlBorderData get borderData => FlBorderData(
         show: false,
@@ -35,50 +33,61 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-
-
   List<BarChartGroupData> get barGroups => [
-    BarChartGroupData(
-          x: 0,
-          barRods: [ BarChartRodData( y: 6, colors: [Colors.white24],width: 6)],
-),
         BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 9, colors: [Colors.white],width: 6)],
-),
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 6, colors: [Colors.white24], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 6, colors: [Colors.white24],width: 6)],
-),
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 9, colors: [Colors.white], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 8.5, colors: [Colors.white],width: 6)],
-),
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 6, colors: [Colors.white24], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 3, colors: [Colors.white24],width: 6)],
-),
-
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 8.5, colors: [Colors.white], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 5, colors: [Colors.white],width: 6)],
-),
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 3, colors: [Colors.white24], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 8, colors: [Colors.white24],width: 6)],
-),
-
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 5, colors: [Colors.white], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 6, colors: [Colors.white],width: 6)],
-),
-BarChartGroupData(
+          barRods: [
+            BarChartRodData(y: 8, colors: [Colors.white24], width: 6)
+          ],
+        ),
+        BarChartGroupData(
           x: 0,
-          barRods: [ BarChartRodData( y: 4, colors: [Colors.white24],width: 6)],
-),
-
- 
-
+          barRods: [
+            BarChartRodData(y: 6, colors: [Colors.white], width: 6)
+          ],
+        ),
+        BarChartGroupData(
+          x: 0,
+          barRods: [
+            BarChartRodData(y: 4, colors: [Colors.white24], width: 6)
+          ],
+        ),
       ];
 
   Widget build(BuildContext context) {
@@ -465,8 +474,34 @@ BarChartGroupData(
             ),
           ),
 
+         
           Positioned(
-            top: size.height * 0.82,
+              height: size.height * 1.46,
+              left: 20,
+              child: Row(
+                children: [
+                  Text(
+                    "Statistics",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20),
+                  ),
+                  SizedBox(
+                    width: size.height * 0.2,
+                  ),
+                  Text(
+                    "Month",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20),
+                  ),
+                ],
+              )),
+
+               Positioned(
+            top: size.height * 0.77,
             left: 7,
             child: Container(
               child: Card(
@@ -477,34 +512,30 @@ BarChartGroupData(
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 99, horizontal:180),
-                      child: SizedBox(height: 50,),
+                      const EdgeInsets.symmetric(vertical: 99, horizontal: 180),
+                  child: SizedBox(),
                 ),
               ),
             ),
           ),
-          Positioned(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: BarChart(
-                BarChartData(
-                  barTouchData: barTouchData,
-                  titlesData: titlesData,
-                  borderData: borderData,
-                  gridData: FlGridData(show: false),
-                  barGroups: barGroups,
-                  alignment: BarChartAlignment.spaceAround,
-                  maxY: 70,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            height: size.height * 0.9,
-            child: Container(
-              color: Colors.green,
-            ),
-          )
+
+          //  Positioned(
+             
+          //   child: Padding(
+          //     padding: const EdgeInsets.all(20.0),
+          //     child: BarChart(
+          //       BarChartData(
+          //         barTouchData: barTouchData,
+          //         titlesData: titlesData,
+          //         borderData: borderData,
+          //         gridData: FlGridData(show: false),
+          //         barGroups: barGroups,
+          //         alignment: BarChartAlignment.spaceAround,
+          //         maxY: 70,
+          //       ),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
