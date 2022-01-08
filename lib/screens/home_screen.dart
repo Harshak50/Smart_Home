@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             color: Colors.black45,
           ),
+
           Positioned(
             top: size.height * 0.08,
             left: 10,
@@ -170,6 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   width: size.width * 0.08,
                 ),
+                // Plug wall card
                 Container(
                   child: Card(
                     color: Colors.white30,
@@ -338,6 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
+                // Smart TV Card
                 Container(
                   child: Card(
                     color: Colors.white30,
@@ -400,7 +403,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-
+// statistics and month
           Positioned(
               height: size.height * 1.46,
               left: 20,
@@ -425,10 +428,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               )),
-
+//Electricity usage
           Positioned(
             top: size.height * 0.77,
-            left: 7,
+            left: 10,
             child: Container(
               child: Card(
                 color: Colors.white12,
@@ -438,7 +441,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 99, horizontal: 180),
+                      const EdgeInsets.symmetric(vertical: 99, horizontal: 185),
                 ),
               ),
             ),
@@ -503,6 +506,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Bars(
                         height: 20,
                         color: Colors.white24,
+                      ),
+                      Bars(
+                        height: 8,
+                        color: Colors.white,
                       ),
                     ],
                   ),
