@@ -1,7 +1,7 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:smart_home/utils/constants.dart';
+import '../utils/bars.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -15,80 +15,6 @@ class _HomeScreenState extends State<HomeScreen> {
   bool status = false;
   bool status1 = false;
   bool status2 = false;
-
-  BarTouchData get barTouchData => BarTouchData(
-        enabled: true,
-      );
-
-  FlTitlesData get titlesData => FlTitlesData(
-      leftTitles: SideTitles(showTitles: false),
-      topTitles: SideTitles(showTitles: false),
-      rightTitles: SideTitles(showTitles: false),
-      bottomTitles: SideTitles(showTitles: false));
-
-  FlBorderData get borderData => FlBorderData(
-        show: false,
-        border: Border(
-          bottom: BorderSide.none,
-        ),
-      );
-
-  List<BarChartGroupData> get barGroups => [
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 6, colors: [Colors.white24], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 9, colors: [Colors.white], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 6, colors: [Colors.white24], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 8.5, colors: [Colors.white], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 3, colors: [Colors.white24], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 5, colors: [Colors.white], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 8, colors: [Colors.white24], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 6, colors: [Colors.white], width: 6)
-          ],
-        ),
-        BarChartGroupData(
-          x: 0,
-          barRods: [
-            BarChartRodData(y: 4, colors: [Colors.white24], width: 6)
-          ],
-        ),
-      ];
 
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -345,6 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Row(
                             children: [
                               CircleAvatar(
+                                backgroundColor: Colors.grey,
                                 radius: 25,
                                 backgroundImage: NetworkImage(
                                     "https://images.unsplash.com/photo-1505282722405-413748d3de7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=930&q=80"),
@@ -474,7 +401,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-         
           Positioned(
               height: size.height * 1.46,
               left: 20,
@@ -500,7 +426,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               )),
 
-               Positioned(
+          Positioned(
             top: size.height * 0.77,
             left: 7,
             child: Container(
@@ -513,29 +439,76 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 99, horizontal: 180),
-                  child: SizedBox(),
                 ),
               ),
             ),
           ),
-
-          //  Positioned(
-             
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(20.0),
-          //     child: BarChart(
-          //       BarChartData(
-          //         barTouchData: barTouchData,
-          //         titlesData: titlesData,
-          //         borderData: borderData,
-          //         gridData: FlGridData(show: false),
-          //         barGroups: barGroups,
-          //         alignment: BarChartAlignment.spaceAround,
-          //         maxY: 70,
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          Positioned(
+              top: size.height * 0.8,
+              left: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Electricity Usage",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500)),
+                  Row(
+                    children: [
+                      Bars(
+                        height: 20,
+                        color: Colors.white,
+                      ),
+                      Bars(
+                        height: 50,
+                        color: Colors.white24,
+                      ),
+                      Bars(
+                        height: 35,
+                        color: Colors.white,
+                      ),
+                      Bars(
+                        height: 25,
+                        color: Colors.white24,
+                      ),
+                      Bars(
+                        height: 12,
+                        color: Colors.white,
+                      ),
+                      Bars(
+                        height: 30,
+                        color: Colors.white24,
+                      ),
+                      Bars(
+                        height: 50,
+                        color: Colors.white,
+                      ),
+                      Bars(
+                        height: 20,
+                        color: Colors.white24,
+                      ),
+                      Bars(
+                        height: 30,
+                        color: Colors.white,
+                      ),
+                      Bars(
+                        height: 20,
+                        color: Colors.white24,
+                      ),
+                      Bars(
+                        height: 40,
+                        color: Colors.white,
+                      ),
+                      Bars(
+                        height: 20,
+                        color: Colors.white24,
+                      ),
+                    ],
+                  ),
+                ],
+              ))
+    
         ],
       ),
     );
