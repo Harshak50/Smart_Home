@@ -14,8 +14,9 @@ dependencies:
   flutter:
     sdk: flutter
   google_fonts:
-  flutter_switch: 
-  fl_chart:  
+  flutter_switch:
+  just_audio:
+  flutter_spinkit:
 
   cupertino_icons: ^1.0.2
 

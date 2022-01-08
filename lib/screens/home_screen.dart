@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:smart_home/utils/constants.dart';
 import '../utils/bars.dart';
+import 'package:just_audio/just_audio.dart';
+
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
@@ -11,10 +13,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  AudioPlayer? _audioPlayer;
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    _audioPlayer!
+        .setAudioSource(ConcatenatingAudioSource(children: [
+      AudioSource.uri(Uri.parse(
+          "https://www2.cs.uic.edu/~i101/SoundFiles/PinkPanther60.wav")),
+      AudioSource.uri(Uri.parse(
+          "https://www2.cs.uic.edu/~i101/SoundFiles/ImperialMarch60.wav")),
+    ]))
+        .catchError((error) {
+      print("An error occured $error");
+    });
+  }
+
   @override
+  void dispose() {
+    _audioPlayer!.stop();
+    _audioPlayer!.dispose();
+    super.dispose();
+  }
+
+  bool isLoading = false;
   bool status = false;
   bool status1 = false;
   bool status2 = false;
+  bool isPlaying = false;
 
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -305,32 +331,58 @@ class _HomeScreenState extends State<HomeScreen> {
                               SizedBox(
                                 width: 15,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.skip_previous,
-                                  size: 24,
-                                  color: Colors.white,
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _audioPlayer!.hasPrevious
+                                        ? _audioPlayer!.seekToPrevious()
+                                        : null;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.skip_previous,
+                                    size: 24,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                               SizedBox(
                                 child: FloatingActionButton(
                                   backgroundColor: Colors.white30,
                                   child: Icon(
-                                    Icons.pause,
+                                    isPlaying ? Icons.pause : Icons.play_arrow,
                                     size: 24,
                                   ),
                                   onPressed: () {
-                                    print("Cliked");
+                                    setState(() {
+                                      if (isPlaying == false) {
+                                        _audioPlayer!.play();
+                                        isPlaying = true;
+                                      } else if (isPlaying == true) {
+                                        _audioPlayer!.stop();
+                                        isPlaying = false;
+                                      }
+                                    });
                                   },
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.skip_next,
-                                  size: 24,
-                                  color: Colors.white,
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    _audioPlayer!.hasNext
+                                        ? _audioPlayer!.seekToNext()
+                                        : null;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.skip_next,
+                                    size: 24,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
                             ],
@@ -441,7 +493,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: Padding(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 99, horizontal: 185),
+                      const EdgeInsets.symmetric(vertical: 99, horizontal: 182),
                 ),
               ),
             ),
@@ -508,14 +560,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.white24,
                       ),
                       Bars(
-                        height: 8,
+                        height: 28,
                         color: Colors.white,
                       ),
                     ],
                   ),
                 ],
               ))
-    
         ],
       ),
     );
